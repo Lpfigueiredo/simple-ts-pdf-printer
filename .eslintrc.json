@@ -10,7 +10,8 @@
         "plugin:import/warnings",
         "plugin:import/typescript",
         "airbnb-base",
-        "prettier"
+        "prettier",
+        "prettier/@typescript-eslint"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
