@@ -1,3 +1,14 @@
+import fs from "fs";
 import pdfCreator from "./pdfCreator";
 
-pdfCreator.createPdf("test");
+const startProcedure = (): void => {
+  const pdfDir = "./pdf";
+
+  if (!fs.existsSync(pdfDir)) {
+    fs.mkdirSync(pdfDir);
+  }
+
+  pdfCreator.createPdf("test");
+};
+
+startProcedure();

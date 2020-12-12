@@ -15,12 +15,6 @@ export default class PdfCreator {
     const date = new Date();
     const milis = date.getTime();
 
-    const pdfDir = "./pdf";
-
-    if (!fs.existsSync(pdfDir)) {
-      fs.mkdirSync(pdfDir);
-    }
-
     const pdfPath = path.join("pdf", `${data}-${milis}.pdf`);
 
     const options = {
