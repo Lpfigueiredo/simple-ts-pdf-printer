@@ -10,9 +10,12 @@ export default class PdfCreator {
       "utf8"
     );
     const template = handlebars.compile(templateHtml);
-    const html = template(data);
+    const html = template({ data });
 
-    const pdfPath = path.join("pdf", `${data}.pdf`);
+    const date = new Date();
+    const milis = date.getTime();
+
+    const pdfPath = path.join("pdf", `${data}-${milis}.pdf`);
 
     const options = {
       width: "1230px",
