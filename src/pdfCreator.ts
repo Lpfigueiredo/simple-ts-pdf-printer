@@ -5,7 +5,10 @@ import puppeteer from 'puppeteer';
 
 export default class PdfCreator {
   static async createPdf(data: string): Promise<void> {
-    const templateHtml = fs.readFileSync(path.join(__dirname, 'template', 'template.html'), 'utf8');
+    const templateHtml = fs.readFileSync(
+      path.join(__dirname, 'template', 'template.html'),
+      'utf8'
+    );
     const template = handlebars.compile(templateHtml);
     const html = template({ data });
 

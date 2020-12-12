@@ -1,14 +1,14 @@
-import fs from "fs";
-import pdfCreator from "./pdfCreator";
+import fs from 'fs';
+import pdfCreator from './pdfCreator';
 
 const startProcedure = (): void => {
-  const pdfDir = "./pdf";
+  const pdfDir = './pdf';
 
   if (!fs.existsSync(pdfDir)) {
     fs.mkdirSync(pdfDir);
   }
 
-  pdfCreator.createPdf("test");
+  pdfCreator.createPdf('test');
 };
 
 startProcedure();
