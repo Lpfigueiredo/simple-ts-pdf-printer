@@ -33,10 +33,7 @@ export default class PdfCreator {
 
     const groupedTemplates = templates.join('');
 
-    const html = mainHtml.replace(
-      `<div class="replaceable"></div>`,
-      groupedTemplates
-    );
+    const html = mainHtml.replace(`<main id="main"></main>`, groupedTemplates);
 
     const date = new Date();
     const milis = date.getTime();
