@@ -5,7 +5,7 @@ import puppeteer from 'puppeteer';
 
 export default class PdfCreator {
   static async createPdf(datas: string[]): Promise<void> {
-    const templatesArray = datas.map((data) => {
+    const templates = datas.map((data) => {
       const templateHtml = fs.readFileSync(
         path.join(__dirname, 'template', 'template.html'),
         'utf8'
@@ -14,7 +14,7 @@ export default class PdfCreator {
       return template({ data });
     });
 
-    const generalTemplate = templatesArray.join('');
+    const groupedTemplates = templates.join('');
 
     const date = new Date();
     const milis = date.getTime();
@@ -41,7 +41,7 @@ export default class PdfCreator {
 
     const page = await browser.newPage();
 
-    await page.goto(`data:text/html;charset=UTF-8,${generalTemplate}`, {
+    await page.goto(`data:text/html;charset=UTF-8,${groupedTemplates}`, {
       waitUntil: 'networkidle0',
     });
 
