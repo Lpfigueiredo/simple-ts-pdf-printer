@@ -6,8 +6,20 @@ import puppeteer from 'puppeteer';
 export default class PdfCreator {
   static async createPdf(datas: string[]): Promise<void> {
     const templates = datas.map((data) => {
+      let model: string;
+
+      switch (data) {
+        case 'test1':
+          model = 'template1';
+          break;
+
+        default:
+          model = 'template2';
+          break;
+      }
+
       const templateHtml = fs.readFileSync(
-        path.join(__dirname, 'template', 'template.html'),
+        path.join(__dirname, 'template', `${model}.html`),
         'utf8'
       );
       const template = handlebars.compile(templateHtml);
