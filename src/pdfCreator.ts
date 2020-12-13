@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import handlebars from 'handlebars';
-import puppeteer from 'puppeteer';
+import puppeteer, { PDFOptions } from 'puppeteer';
 
 export default class PdfCreator {
   static async createPdf(datas: string[]): Promise<void> {
@@ -40,8 +40,8 @@ export default class PdfCreator {
 
     const pdfPath = path.join('pdf', `test-${milis}.pdf`);
 
-    const options = {
-      width: '1230px',
+    const options: PDFOptions = {
+      format: 'A4',
       headerTemplate: '<p></p>',
       footerTemplate: '<p></p>',
       displayHeaderFooter: false,
