@@ -8,7 +8,7 @@ const startProcedure = (): void => {
     fs.mkdirSync(pdfDir);
   }
 
-  pdfCreator.createPdf('test');
+  pdfCreator.createPdf(['test1', 'test2']);
 };
 
 startProcedure();

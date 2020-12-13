@@ -4,18 +4,22 @@ import handlebars from 'handlebars';
 import puppeteer from 'puppeteer';
 
 export default class PdfCreator {
-  static async createPdf(data: string): Promise<void> {
-    const templateHtml = fs.readFileSync(
-      path.join(__dirname, 'template', 'template.html'),
-      'utf8'
-    );
-    const template = handlebars.compile(templateHtml);
-    const html = template({ data });
+  static async createPdf(datas: string[]): Promise<void> {
+    const templatesArray = datas.map((data) => {
+      const templateHtml = fs.readFileSync(
+        path.join(__dirname, 'template', 'template.html'),
+        'utf8'
+      );
+      const template = handlebars.compile(templateHtml);
+      return template({ data });
+    });
+
+    const generalTemplate = templatesArray.join('');
 
     const date = new Date();
     const milis = date.getTime();
 
-    const pdfPath = path.join('pdf', `${data}-${milis}.pdf`);
+    const pdfPath = path.join('pdf', `test-${milis}.pdf`);
 
     const options = {
       width: '1230px',
@@ -37,7 +41,7 @@ export default class PdfCreator {
 
     const page = await browser.newPage();
 
-    await page.goto(`data:text/html;charset=UTF-8,${html}`, {
+    await page.goto(`data:text/html;charset=UTF-8,${generalTemplate}`, {
       waitUntil: 'networkidle0',
     });
 
