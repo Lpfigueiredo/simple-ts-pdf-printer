@@ -6,7 +6,7 @@ import puppeteer, { PDFOptions } from 'puppeteer';
 export default class PdfCreator {
   static async createPdf(datas: string[]): Promise<void> {
     const mainHtml = fs.readFileSync(
-      path.join(__dirname, 'template', 'main.html'),
+      path.join(__dirname, 'template', 'main.hbs'),
       'utf8'
     );
 
@@ -24,7 +24,7 @@ export default class PdfCreator {
       }
 
       const templateHtml = fs.readFileSync(
-        path.join(__dirname, 'template', `${model}.html`),
+        path.join(__dirname, 'template', `${model}.hbs`),
         'utf8'
       );
       const template = handlebars.compile(templateHtml);
