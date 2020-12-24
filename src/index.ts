@@ -1,14 +1,14 @@
 import fs from 'fs';
 import pdfCreator from './pdfCreator';
 
-const startProcedure = (): void => {
+const startProcedure = async (): Promise<void> => {
   const pdfDir = './pdf';
 
   if (!fs.existsSync(pdfDir)) {
     fs.mkdirSync(pdfDir);
   }
 
-  pdfCreator.createPdf('test');
+  await pdfCreator.createPdf('test');
 };
 
 startProcedure();
